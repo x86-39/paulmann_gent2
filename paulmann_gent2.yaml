@@ -114,8 +114,8 @@ blueprint:
           min: 2000
           max: 9000
 
-    # --- Adaptive Lighting Settings ---
-    adaptive_lighting_settings:
+    # --- Lighting Settings ---
+    lighting_settings:
       name: Behavior of power button
       icon: mdi:sun-thermometer-outline
       collapsed: true
@@ -131,244 +131,54 @@ blueprint:
                   value: toggle
                 - label: On/off logic (switch off if at least one of the lights in the group is on)
                   value: onoff_logic
-                - label: Adaptive (use time sensitive brightness and color temperature, use the following fields to set time periods and associated parameters)
-                  value: adaptive 
               mode: dropdown
 
-
-        morning_start_time:
-          name: Morning Start Time
-          description: Time when morning lighting should begin and night lighting ends. Only used with adaptive.
-          default: "06:00:00"
-          selector:
-            time: {}
-
-        morning_color_temp:
-          name: Morning Color Temperature (Kelvin)
-          description: Warmer, sunrise-like color temperature for mornings (e.g., 2700K - 3500K). Only used with adaptive.
-          default: 3000
-          selector:
-            number:
-              mode: slider
-              min: 2000
-              max: 6500
-              unit_of_measurement: K
-              step: 100
-
-        morning_brightness:
-          name: Morning Brightness (Percentage)
-          description: Brightness percentage for mornings. Only used with adaptive.
-          default: 40
-          selector:
-            number:
-              mode: slider
-              min: 0
-              max: 100
-              unit_of_measurement: "%"
-              step: 1
-
-        day_start_time:
-          name: Day Start Time
-          description: Time when day lighting should begin and morning lighting ends. Only used with adaptive.
-          default: "09:00:00"
-          selector:
-            time: {}
-
-        day_color_temp:
-          name: Day Color Temperature (Kelvin)
-          description: Brighter, cooler color temperature for daytime (e.g., 4000K - 5000K). Only used with adaptive.
-          default: 4500
-          selector:
-            number:
-              mode: slider
-              min: 2000
-              max: 6500
-              unit_of_measurement: K
-              step: 100
-
-        day_brightness:
-          name: Day Brightness (Percentage)
-          description: Brightness percentage for daytime. Only used with adaptive.
-          default: 100
-          selector:
-            number:
-              mode: slider
-              min: 0
-              max: 100
-              unit_of_measurement: "%"
-              step: 1
-
-        evening_start_time:
-          name: Evening Start Time
-          description: Time when evening lighting should begin and day lighting ends. Only used with adaptive.
-          default: "17:00:00"
-          selector:
-            time: {}
-
-        evening_color_temp:
-          name: Evening Color Temperature (Kelvin)
-          description: Warmer, sunset-like color temperature for evenings (e.g., 2500K - 3000K). Only used with adaptive.
-          default: 2700
-          selector:
-            number:
-              mode: slider
-              min: 2000
-              max: 6500
-              unit_of_measurement: K
-              step: 100
-
-        evening_brightness:
-          name: Evening Brightness (Percentage)
-          description: Brightness percentage for evenings. Only used with adaptive.
-          default: 60
-          selector:
-            number:
-              mode: slider
-              min: 0
-              max: 100
-              unit_of_measurement: "%"
-              step: 1
-
-        night_start_time:
-          name: Night Start Time
-          description: Time when night lighting should begin and evening lighting ends (can be past midnight). Only used with adaptive.
-          default: "22:00:00"
-          selector:
-            time: {}
-
-        night_color_temp:
-          name: Night Color Temperature (Kelvin)
-          description: Very warm, dimmest color temperature for nighttime (e.g., 2200K - 2700K). Only used with adaptive.
-          default: 2500
-          selector:
-            number:
-              mode: slider
-              min: 2000
-              max: 6500
-              unit_of_measurement: K
-              step: 100
-
-        night_brightness:
-          name: Night Brightness (Percentage)
-          description: Brightness percentage for nighttime. Only used with adaptive.
-          default: 40 
-          selector:
-            number:
-              mode: slider
-              min: 0
-              max: 100
-              unit_of_measurement: "%"
-              step: 1
-
-    scene_setups:
-      name: Scene setups
-      icon: mdi:palette
+    sbutton_setups:
+      name: S button actions
+      icon: mdi:script-text-outline
       collapsed: true
       input:
-        scene_1_color:
-          name: Color of scene 1
-          description: Which color for scene 1
-          default: [255, 255, 255]
+        s1_actions:
+          name: Actions for button S1
+          description: Sequence for button S1
           selector:
-            color_rgb:
-        scene_1_brightness:
-          name: Brightness of scene 1
-          description: Which brightness for scene 1
-          default: 80
-          selector:
-            number:
-              min: 1
-              max: 100
+            action:
 
-        scene_2_color:
-          name: Color of scene 2
-          description: Which color for scene 2
-          default: [255, 255, 255]
+        s2_actions:
+          name: Actions for button S2
+          description: Sequence for button S2
           selector:
-            color_rgb:
-        scene_2_brightness:
-          name: Brightness of scene 2
-          description: Which brightness for scene 2
-          default: 80
-          selector:
-            number:
-              min: 1
-              max: 100
+            action:
 
-        scene_3_color:
-          name: Color of scene 3
-          description: Which color for scene 3
-          default: [255, 255, 255]
+        s3_actions:
+          name: Actions for button S3
+          description: Sequence for button S3
           selector:
-            color_rgb:
-        scene_3_brightness:
-          name: Brightness of scene 3
-          description: Which brightness for scene 3
-          default: 80
-          selector:
-            number:
-              min: 1
-              max: 100
+            action:
 
-        scene_4_color:
-          name: Color of scene 4
-          description: Which color for scene 4
-          default: [255, 255, 255]
+        s4_actions:
+          name: Actions for button S4
+          description: Sequence for button S4
           selector:
-            color_rgb:
-        scene_4_brightness:
-          name: Brightness of scene 4
-          description: Which brightness for scene 4
-          default: 80
-          selector:
-            number:
-              min: 1
-              max: 100
+            action:
 
-        scene_5_color:
-          name: Color of scene 5
-          description: Which color for scene 5
-          default: [255, 255, 255]
+        s5_actions:
+          name: Actions for button S5
+          description: Sequence for button S5
           selector:
-            color_rgb:
-        scene_5_brightness:
-          name: Brightness of scene 5
-          description: Which brightness for scene 5
-          default: 80
-          selector:
-            number:
-              min: 1
-              max: 100
+            action:
 
-        scene_6_color:
-          name: Color of scene 6
-          description: Which color for scene 6
-          default: [255, 255, 255]
+        s6_actions:
+          name: Actions for button S6
+          description: Sequence for button S6
           selector:
-            color_rgb:
-        scene_6_brightness:
-          name: Brightness of scene 6
-          description: Which brightness for scene 6
-          default: 80
-          selector:
-            number:
-              min: 1
-              max: 100
+            action:
 
-        scene_7_color:
-          name: Color of scene 7
-          description: Which color for scene 7
-          default: [255, 255, 255]
+        s7_actions:
+          name: Actions for button S7
+          description: Sequence for button S7
           selector:
-            color_rgb:
-        scene_7_brightness:
-          name: Brightness of scene 7
-          description: Which brightness for scene 7
-          default: 80
-          selector:
-            number:
-              min: 1
-              max: 100
+            action:
 
 trigger:
   - platform: mqtt
@@ -387,22 +197,14 @@ action:
                 - !input target_lights_2
                 - !input target_lights_3
                 - !input target_lights_4
-              scene_color_array:
-                - !input scene_1_color
-                - !input scene_2_color
-                - !input scene_3_color
-                - !input scene_4_color
-                - !input scene_5_color
-                - !input scene_6_color
-                - !input scene_7_color
-              scene_brightness_array:
-                - !input scene_1_brightness
-                - !input scene_2_brightness
-                - !input scene_3_brightness
-                - !input scene_4_brightness
-                - !input scene_5_brightness
-                - !input scene_6_brightness
-                - !input scene_7_brightness
+              sbutton_actions:
+                - !input s1_actions
+                - !input s2_actions
+                - !input s3_actions
+                - !input s4_actions
+                - !input s5_actions
+                - !input s6_actions
+                - !input s7_actions
               selected_target_light_id: "{{ trigger.payload_json.action[-1]}}" #last char is LIGHTNUMBER
               selected_target_lights: "{{target_light_array[selected_target_light_id-1]}}"
 
@@ -442,27 +244,6 @@ action:
               filtered: "{{ entities | select( 'search' , '^light' ) | select('is_state', 'on') | list }}"
               lights_on: "{{ filtered | count > 0 }}"
 
-              adaptive_color_temp: >
-                {% if current_time >= morning_start and current_time < day_start %}
-                  {{ var_morning_color_temp }}
-                {% elif current_time >= day_start and current_time < evening_start %}
-                  {{ var_day_color_temp }}
-                {% elif current_time >= evening_start and current_time < night_start %}
-                  {{ var_evening_color_temp }}
-                {% else %} {# Night or time past midnight #}
-                  {{ var_night_color_temp }}
-                {% endif %}
-
-              adaptive_brightness_pct: >
-                {% if current_time >= morning_start and current_time < day_start %}
-                  {{ var_morning_brightness }}
-                {% elif current_time >= day_start and current_time < evening_start %}
-                  {{ var_day_brightness }}
-                {% elif current_time >= evening_start and current_time < night_start %}
-                  {{ var_evening_brightness }}
-                {% else %} {# Night or time past midnight #}
-                  {{ var_night_brightness }}
-                {% endif %}
           - choose:
               - conditions:
                   - condition: template
@@ -484,18 +265,6 @@ action:
                 sequence:
                   - action: light.turn_on
                     target: "{{selected_target_lights}}"
-
-              - conditions:
-                  - condition: template
-                    value_template: "{{ (command_name == 'on' or  command_name == 'off') and var_light_control_logic == 'adaptive' and not lights_on }}"
-                sequence:
-                  - action: light.turn_on
-                    target: "{{selected_target_lights}}"
-                    data:
-                      #transition: "{{ transition_time_var }}"
-                      color_temp_kelvin: "{{ adaptive_color_temp }}"
-                      brightness_pct: "{{ adaptive_brightness_pct }}"
-
 
               - conditions:
                   - condition: template
@@ -578,12 +347,12 @@ action:
                 sequence:
                   - variables:
                       scene_number: "{{command_name[7:8]|int-1}}"
-                  - action: light.turn_on
-                    target: "{{selected_target_lights}}"
-                    data:
-                      rgb_color: "{{scene_color_array[scene_number]}}"
-                      brightness: "{{scene_brightness_array[scene_number]}}"
-                      transition: !input transition_time
+                  - action: "{{sbutton_actions[scene_number]}}"
+                    # target: "{{selected_target_lights}}"
+                    # data:
+                    #   rgb_color: "{{sbutton_actions[scene_number]}}"
+                    #   brightness: "{{scene_brightness_array[scene_number]}}"
+                    #   transition: !input transition_time
 
             default:
               #do nothing   
