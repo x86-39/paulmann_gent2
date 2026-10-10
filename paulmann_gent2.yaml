@@ -415,11 +415,26 @@ action:
 
               - conditions:
                   - condition: template
-                    value_template: "{{ command_name == 'hue_move' or command_name == 'stop_move_step' }}"  # idc about it being a toggle
+                    value_template: "{{ command_name == 'stop_move_step' }}"
                 sequence:
                   - action: script.turn_on
                     target:
                       entity_id: "{{sbutton_script[7]}}"
+                    data:
+                      variables:
+                        toggle: false
+
+              - conditions:
+                  - condition: template
+                    value_template: "{{ command_name == 'hue_move' }}"
+                sequence:
+                  - action: script.turn_on
+                    target:
+                      entity_id: "{{sbutton_script[7]}}"
+                    data:
+                      variables:
+                        toggle: true
+
 
               - conditions:
                   - condition: template
