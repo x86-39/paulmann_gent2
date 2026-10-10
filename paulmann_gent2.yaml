@@ -143,49 +143,63 @@ blueprint:
           description: Sequence for button S1
           default:
           selector:
-            action:
+            entity:
+              filter:
+                - domain: script
 
         s2_script:
           name: Actions for button S2
           description: Sequence for button S2
           default:
           selector:
-            action:
+            entity:
+              filter:
+                - domain: script
 
         s3_script:
           name: Actions for button S3
           description: Sequence for button S3
           default:
           selector:
-            action:
+            entity:
+              filter:
+                - domain: script
 
         s4_script:
           name: Actions for button S4
           description: Sequence for button S4
           default:
           selector:
-            action:
+            entity:
+              filter:
+                - domain: script
 
         s5_script:
           name: Actions for button S5
           description: Sequence for button S5
           default:
           selector:
-            action:
+            entity:
+              filter:
+                - domain: script
 
         s6_script:
           name: Actions for button S6
           description: Sequence for button S6
           default:
           selector:
-            action:
+            entity:
+              filter:
+                - domain: script
 
         s7_script:
           name: Actions for button S7
           description: Sequence for button S7
           default:
           selector:
-            action:
+            entity:
+              filter:
+                - domain: script
 
 trigger:
   - platform: mqtt
