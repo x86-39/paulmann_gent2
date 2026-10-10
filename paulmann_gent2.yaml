@@ -210,24 +210,6 @@ action:
 
               #transition_time_var: !input transition_time
               #brightness_transition_time_var: !input brightness_transition_time
-              current_time: "{{ now().strftime('%H:%M:%S') }}"
-              day_start: !input day_start_time
-              evening_start: !input evening_start_time
-              night_start: !input night_start_time
-              morning_start: !input morning_start_time
-
-              var_morning_color_temp: !input morning_color_temp
-              var_day_color_temp: !input day_color_temp
-              var_evening_color_temp: !input evening_color_temp
-              var_night_color_temp: !input night_color_temp
-              var_morning_brightness: !input morning_brightness
-              var_day_brightness: !input day_brightness
-              var_evening_brightness: !input evening_brightness
-              var_night_brightness: !input night_brightness
-              var_light_control_logic: !input light_control_logic
-
-
-
 
               entities: >
                 {%- set ns = namespace(ret=[]) %}
