@@ -133,6 +133,48 @@ blueprint:
                   value: onoff_logic
               mode: dropdown
 
+    wheel_button_setups:
+      name: Wheel button actions per group
+      icon: mdi:script-text-outline
+      collapsed: true
+      input:
+        h1_script:
+          name: Script for hue w/ group 1 selected
+          description: Sequence for button H1
+          default:
+          selector:
+            entity:
+              filter:
+                - domain: script
+
+        h2_script:
+          name: Script for hue w/ group 2 selected
+          description: Sequence for button H2
+          default:
+          selector:
+            entity:
+              filter:
+                - domain: script
+
+        h3_script:
+          name: Script for hue w/ group 3 selected
+          description: Sequence for button H3
+          default:
+          selector:
+            entity:
+              filter:
+                - domain: script
+
+        h4_script:
+          name: Script for hue w/ group 4 selected
+          description: Sequence for button H4
+          default:
+          selector:
+            entity:
+              filter:
+                - domain: script
+
+
     sbutton_setups:
       name: S button script
       icon: mdi:script-text-outline
@@ -201,6 +243,15 @@ blueprint:
               filter:
                 - domain: script
 
+        s8_script:
+          name: Script for button S8 (Move button)
+          description: Sequence for button S8
+          default:
+          selector:
+            entity:
+              filter:
+                - domain: script
+
 trigger:
   - platform: mqtt
     topic: !input mqtt_topic
@@ -212,12 +263,18 @@ action:
         sequence: 
           - variables:
               command_name: "{{ trigger.payload_json.action[:-2] }}"
+              selected_group: "{{ trigger.payload_json.action[-1] }}"
 
               target_light_array:
                 - !input target_lights_1
                 - !input target_lights_2
                 - !input target_lights_3
                 - !input target_lights_4
+              hbutton_script:
+                - !input h1_script
+                - !input h2_script
+                - !input h3_script
+                - !input h4_script
               sbutton_script:
                 - !input s1_script
                 - !input s2_script
@@ -226,6 +283,7 @@ action:
                 - !input s5_script
                 - !input s6_script
                 - !input s7_script
+                - !input s8_script
               selected_target_light_id: "{{ trigger.payload_json.action[-1]}}" #last char is LIGHTNUMBER
               selected_target_lights: "{{target_light_array[selected_target_light_id-1]}}"
 
@@ -235,6 +293,7 @@ action:
               entities: >
                 {%- set ns = namespace(ret=[]) %}
                 {%- for key in ['device_id', 'area_id', 'entity_id'] %}
+
                   {%- set items = selected_target_lights.get(key, [])  %}
                   {%- if items %}
                     {%- set items = [ items ] if items is string else items %}
@@ -353,12 +412,24 @@ action:
                   - action: script.turn_on
                     target:
                       entity_id: "{{sbutton_script[scene_number]}}"
-                  # - action: "{{sbutton_script[scene_number][0]}}"
-                    # target: "{{selected_target_lights}}"
-                    # data:
-                    #   rgb_color: "{{sbutton_script[scene_number]}}"
-                    #   brightness: "{{scene_brightness_array[scene_number]}}"
-                    #   transition: !input transition_time
+
+              - conditions:
+                  - condition: template
+                    value_template: "{{ command_name == 'hue_move' or command_name == 'stop_move_step' }}"  # idc about it being a toggle
+                sequence:
+                  - action: script.turn_on
+                    target:
+                      entity_id: "{{sbutton_script[7]}}"
+
+              - conditions:
+                  - condition: template
+                    value_template: "{{ command_name == 'move_to_saturation' }}"
+                sequence:
+                  - variables:
+                      group_number: "{{ selected_group|int-1}}"
+                  - action: script.turn_on
+                    target:
+                      entity_id: "{{hbutton_script[group_number]}}"
 
             default:
               #do nothing   
