@@ -336,7 +336,10 @@ action:
                 sequence:
                   - variables:
                       scene_number: "{{command_name[7:8]|int-1}}"
-                  - action: "{{sbutton_actions[scene_number][0]}}"
+                  - action: script.turn_on
+                    target:
+                      entity_id: script.new_script
+                  # - action: "{{sbutton_actions[scene_number][0]}}"
                     # target: "{{selected_target_lights}}"
                     # data:
                     #   rgb_color: "{{sbutton_actions[scene_number]}}"
