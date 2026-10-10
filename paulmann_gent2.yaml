@@ -7,7 +7,7 @@ blueprint:
 
     <h2>Description</h2>
 
-    <p>This blueprint leverages Zigbee2MQTT to receive commands from the Paulmann Gent 2 RGB remote and translate them into actions to control your lights in Home Assistant. It aims to support most of the remote's functionalities, offering a convenient way to interact with your smart lighting.</p>
+    <p>This blueprint leverages Zigbee2MQTT to receive commands from the Paulmann Gent 2 RGB remote and translate them into script to control your lights in Home Assistant. It aims to support most of the remote's functionalities, offering a convenient way to interact with your smart lighting.</p>
 
     <p>The blueprint is designed primarily for RGB color lights but can be used with other types of lights, although some features may not be relevant or function as expected with non-RGB lighting.</p>
 
@@ -134,56 +134,56 @@ blueprint:
               mode: dropdown
 
     sbutton_setups:
-      name: S button actions
+      name: S button script
       icon: mdi:script-text-outline
       collapsed: true
       input:
-        s1_actions:
+        s1_script:
           name: Actions for button S1
           description: Sequence for button S1
-          default: []
+          default:
           selector:
             action:
 
-        s2_actions:
+        s2_script:
           name: Actions for button S2
           description: Sequence for button S2
-          default: []
+          default:
           selector:
             action:
 
-        s3_actions:
+        s3_script:
           name: Actions for button S3
           description: Sequence for button S3
-          default: []
+          default:
           selector:
             action:
 
-        s4_actions:
+        s4_script:
           name: Actions for button S4
           description: Sequence for button S4
-          default: []
+          default:
           selector:
             action:
 
-        s5_actions:
+        s5_script:
           name: Actions for button S5
           description: Sequence for button S5
-          default: []
+          default:
           selector:
             action:
 
-        s6_actions:
+        s6_script:
           name: Actions for button S6
           description: Sequence for button S6
-          default: []
+          default:
           selector:
             action:
 
-        s7_actions:
+        s7_script:
           name: Actions for button S7
           description: Sequence for button S7
-          default: []
+          default:
           selector:
             action:
 
@@ -204,14 +204,14 @@ action:
                 - !input target_lights_2
                 - !input target_lights_3
                 - !input target_lights_4
-              sbutton_actions:
-                - !input s1_actions
-                - !input s2_actions
-                - !input s3_actions
-                - !input s4_actions
-                - !input s5_actions
-                - !input s6_actions
-                - !input s7_actions
+              sbutton_script:
+                - !input s1_script
+                - !input s2_script
+                - !input s3_script
+                - !input s4_script
+                - !input s5_script
+                - !input s6_script
+                - !input s7_script
               selected_target_light_id: "{{ trigger.payload_json.action[-1]}}" #last char is LIGHTNUMBER
               selected_target_lights: "{{target_light_array[selected_target_light_id-1]}}"
 
@@ -338,11 +338,11 @@ action:
                       scene_number: "{{command_name[7:8]|int-1}}"
                   - action: script.turn_on
                     target:
-                      entity_id: script.new_script
-                  # - action: "{{sbutton_actions[scene_number][0]}}"
+                      entity_id: "{{sbutton_script[scene_number]}}"
+                  # - action: "{{sbutton_script[scene_number][0]}}"
                     # target: "{{selected_target_lights}}"
                     # data:
-                    #   rgb_color: "{{sbutton_actions[scene_number]}}"
+                    #   rgb_color: "{{sbutton_script[scene_number]}}"
                     #   brightness: "{{scene_brightness_array[scene_number]}}"
                     #   transition: !input transition_time
 
