@@ -141,42 +141,49 @@ blueprint:
         s1_actions:
           name: Actions for button S1
           description: Sequence for button S1
+          default: []
           selector:
             action:
 
         s2_actions:
           name: Actions for button S2
           description: Sequence for button S2
+          default: []
           selector:
             action:
 
         s3_actions:
           name: Actions for button S3
           description: Sequence for button S3
+          default: []
           selector:
             action:
 
         s4_actions:
           name: Actions for button S4
           description: Sequence for button S4
+          default: []
           selector:
             action:
 
         s5_actions:
           name: Actions for button S5
           description: Sequence for button S5
+          default: []
           selector:
             action:
 
         s6_actions:
           name: Actions for button S6
           description: Sequence for button S6
+          default: []
           selector:
             action:
 
         s7_actions:
           name: Actions for button S7
           description: Sequence for button S7
+          default: []
           selector:
             action:
 
