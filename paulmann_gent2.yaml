@@ -139,7 +139,7 @@ blueprint:
       collapsed: true
       input:
         s1_script:
-          name: Actions for button S1
+          name: Script for button S1
           description: Sequence for button S1
           default:
           selector:
@@ -148,7 +148,7 @@ blueprint:
                 - domain: script
 
         s2_script:
-          name: Actions for button S2
+          name: Script for button S2
           description: Sequence for button S2
           default:
           selector:
@@ -157,7 +157,7 @@ blueprint:
                 - domain: script
 
         s3_script:
-          name: Actions for button S3
+          name: Script for button S3
           description: Sequence for button S3
           default:
           selector:
@@ -166,7 +166,7 @@ blueprint:
                 - domain: script
 
         s4_script:
-          name: Actions for button S4
+          name: Script for button S4
           description: Sequence for button S4
           default:
           selector:
@@ -175,7 +175,7 @@ blueprint:
                 - domain: script
 
         s5_script:
-          name: Actions for button S5
+          name: Script for button S5
           description: Sequence for button S5
           default:
           selector:
@@ -184,7 +184,7 @@ blueprint:
                 - domain: script
 
         s6_script:
-          name: Actions for button S6
+          name: Script for button S6
           description: Sequence for button S6
           default:
           selector:
@@ -193,7 +193,7 @@ blueprint:
                 - domain: script
 
         s7_script:
-          name: Actions for button S7
+          name: Script for button S7
           description: Sequence for button S7
           default:
           selector:
